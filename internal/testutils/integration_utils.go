@@ -2,22 +2,22 @@
 Package testutils implements tests for the Power-Go-Client:
 
 Files
-	- integration_utils.go:			Defines commonly used test functions
-	- integration_variables.go:		Lists default values for all test variables
-	- example.env:					An example .env which is used when overriding default test variables
-	- launch.json:					An example test configuration
-	- client/instance/*_test.go:	Defines tests for an individual resource type
+  - integration_utils.go:			Defines commonly used test functions
+  - integration_variables.go:		Lists default values for all test variables
+  - example.env:					An example .env which is used when overriding default test variables
+  - launch.json:					An example test configuration
+  - client/instance/*_test.go:	Defines tests for an individual resource type
 
 To run a test:
-	- Set DisableTesting = False in integration_variables.go
-	- Create a .vscode folder in the project
-	- Copy and rename launch.json and .env into .vscode
-	- Either
-		- Use default variables in integration_variables.go
-		- Define variables in .env
-	- Double click the test function name to select the text. launch.json uses this text
-	- Click "Run and Debug" on the VScode sidebar, and then click "Run a test"
-		- Output will be visible in the VScode Debug Console
+  - Set DisableTesting = False in integration_variables.go
+  - Create a .vscode folder in the project
+  - Copy and rename launch.json and .env into .vscode
+  - Either
+  - Use default variables in integration_variables.go
+  - Define variables in .env
+  - Double click the test function name to select the text. launch.json uses this text
+  - Click "Run and Debug" on the VScode sidebar, and then click "Run a test"
+  - Output will be visible in the VScode Debug Console
 */
 package testutils
 
@@ -31,8 +31,8 @@ import (
 	"testing"
 	"time"
 
-	client "github.com/IBM-Cloud/power-go-client/clients/instance"
-	ps "github.com/IBM-Cloud/power-go-client/ibmpisession"
+	client "github.com/IBM-Cloud/ppc-aas-go-sdk/clients/instance"
+	ps "github.com/IBM-Cloud/ppc-aas-go-sdk/ibmppcsession"
 	core "github.com/IBM/go-sdk-core/v5/core"
 	"github.com/stretchr/testify/require"
 )
@@ -110,28 +110,28 @@ func init() {
 	loadFloat64(&VolumeSize, "VolumeSize", "VOLUME_SIZE", "volume")
 	loadString(&VolumeType, "VolumeType", "VOLUME_TYPE", "volume")
 
-	// VPN
-	loadString(&VpnName, "VpnName", "VPN_NAME", "vpn")
-	loadString(&VpnMode, "VpnMode", "VPN_MODE", "vpn")
-	loadString(&VpnNetworkID, "VpnNetworkID", "VPN_NETWORK_ID", "vpn")
-	loadString(&VpnPeerGatewayAddress, "VpnPeerGatewayAddress", "VPN_PEER_GATEWAY_ADDRESS", "vpn")
-	loadString(&VpnPeerSubnet, "VpnPeerSubnet", "VPN_PEER_SUBNET", "vpn")
+	// // VPN
+	// loadString(&VpnName, "VpnName", "VPN_NAME", "vpn")
+	// loadString(&VpnMode, "VpnMode", "VPN_MODE", "vpn")
+	// loadString(&VpnNetworkID, "VpnNetworkID", "VPN_NETWORK_ID", "vpn")
+	// loadString(&VpnPeerGatewayAddress, "VpnPeerGatewayAddress", "VPN_PEER_GATEWAY_ADDRESS", "vpn")
+	// loadString(&VpnPeerSubnet, "VpnPeerSubnet", "VPN_PEER_SUBNET", "vpn")
 
-	// VPN IKE Policy
-	loadString(&IKEPolicyName, "IKEPolicyName", "IKE_POLICY_NAME", "vpn")
-	loadInt64(&IKEPolicyDhGroup, "IKEPolicyDhGroup", "IKE_POLICY_DH_GROUP", "vpn")
-	loadString(&IKEPolicyEncryption, "IKEPolicyEncryption", "IKE_POLICY_ENCRYPTION", "vpn")
-	loadInt(&IKEPolicyKeyLifetime, "IKEPolicyKeyLifetime", "IKE_POLICY_KEY_LIFETIME", "vpn")
-	loadString(&IKEPolicyPresharedKey, "IKEPolicyPresharedKey", "IKE_POLICY_PRESHARED_KEY", "vpn")
-	loadInt64(&IKEPolicyVersion, "IKEPolicyVersion", "IKE_POLICY_VERSION", "vpn")
+	// // VPN IKE Policy
+	// loadString(&IKEPolicyName, "IKEPolicyName", "IKE_POLICY_NAME", "vpn")
+	// loadInt64(&IKEPolicyDhGroup, "IKEPolicyDhGroup", "IKE_POLICY_DH_GROUP", "vpn")
+	// loadString(&IKEPolicyEncryption, "IKEPolicyEncryption", "IKE_POLICY_ENCRYPTION", "vpn")
+	// loadInt(&IKEPolicyKeyLifetime, "IKEPolicyKeyLifetime", "IKE_POLICY_KEY_LIFETIME", "vpn")
+	// loadString(&IKEPolicyPresharedKey, "IKEPolicyPresharedKey", "IKE_POLICY_PRESHARED_KEY", "vpn")
+	// loadInt64(&IKEPolicyVersion, "IKEPolicyVersion", "IKE_POLICY_VERSION", "vpn")
 
-	// VPN IPSec Policy
-	loadString(&IPSecPolicyName, "IPSecPolicyName", "IPSEC_POLICY_NAME", "vpn")
-	loadString(&IPSecPolicyAuthentication, "IPSecPolicyAuthentication", "IPSEC_POLICY_AUTHENTICATION", "vpn")
-	loadInt64(&IPSecPolicyDhGroup, "IPSecPolicyDhGroup", "IPSEC_POLICY_DH_GROUP", "vpn")
-	loadString(&IPSecPolicyEncryption, "IPSecPolicyEncryption", "IPSEC_POLICY_ENCRYPTION", "vpn")
-	loadInt(&IPSecPolicyKeyLifetime, "IPSecPolicyKeyLifetime", "IPSEC_POLICY_KEY_LIFETIME", "vpn")
-	loadBool(&IPSecPolicyPfs, "IPSEC_POLICY_PFS", "IPSEC_POLICY_PFS", "vpn")
+	// // VPN IPSec Policy
+	// loadString(&IPSecPolicyName, "IPSecPolicyName", "IPSEC_POLICY_NAME", "vpn")
+	// loadString(&IPSecPolicyAuthentication, "IPSecPolicyAuthentication", "IPSEC_POLICY_AUTHENTICATION", "vpn")
+	// loadInt64(&IPSecPolicyDhGroup, "IPSecPolicyDhGroup", "IPSEC_POLICY_DH_GROUP", "vpn")
+	// loadString(&IPSecPolicyEncryption, "IPSecPolicyEncryption", "IPSEC_POLICY_ENCRYPTION", "vpn")
+	// loadInt(&IPSecPolicyKeyLifetime, "IPSecPolicyKeyLifetime", "IPSEC_POLICY_KEY_LIFETIME", "vpn")
+	// loadBool(&IPSecPolicyPfs, "IPSEC_POLICY_PFS", "IPSEC_POLICY_PFS", "vpn")
 }
 
 // AccountPreCheck verifies that all cloud / account variables are defined.
@@ -276,58 +276,58 @@ func VolumePreCheck(t *testing.T) {
 	ifNil(t, VolumeType, "VolumeType", "volume")
 }
 
-// VPNPreCheck verifies that all VPN variables are defined.
-func VPNPreCheck(t *testing.T) {
+// // VPNPreCheck verifies that all VPN variables are defined.
+// func VPNPreCheck(t *testing.T) {
 
-	// Skip if testing is disabled
-	if DisableTesting {
-		return
-	}
+// 	// Skip if testing is disabled
+// 	if DisableTesting {
+// 		return
+// 	}
 
-	AccountPreCheck(t)
-	ifNil(t, VpnName, "VpnName", "vpn")
-	ifNil(t, VpnMode, "VpnMode", "vpn")
-	ifNil(t, VpnNetworkID, "VpnNetworkID", "vpn")
-	ifNil(t, VpnPeerGatewayAddress, "VpnPeerGatewayAddress", "vpn")
-	ifNil(t, VpnPeerSubnet, "VpnPeerSubnet", "vpn")
-}
+// 	AccountPreCheck(t)
+// 	ifNil(t, VpnName, "VpnName", "vpn")
+// 	ifNil(t, VpnMode, "VpnMode", "vpn")
+// 	ifNil(t, VpnNetworkID, "VpnNetworkID", "vpn")
+// 	ifNil(t, VpnPeerGatewayAddress, "VpnPeerGatewayAddress", "vpn")
+// 	ifNil(t, VpnPeerSubnet, "VpnPeerSubnet", "vpn")
+// }
 
-// IKEPolicyPreCheck verifies that all VPN IKE Policy variables are defined.
-func IKEPolicyPreCheck(t *testing.T) {
+// // IKEPolicyPreCheck verifies that all VPN IKE Policy variables are defined.
+// func IKEPolicyPreCheck(t *testing.T) {
 
-	// Skip if testing is disabled
-	if DisableTesting {
-		return
-	}
+// 	// Skip if testing is disabled
+// 	if DisableTesting {
+// 		return
+// 	}
 
-	AccountPreCheck(t)
-	ifNil(t, IKEPolicyName, "IKEPolicyName", "vpn")
-	ifNil(t, IKEPolicyDhGroup, "IKEPolicyDhGroup", "vpn")
-	ifNil(t, IKEPolicyEncryption, "IKEPolicyEncryption", "vpn")
-	ifNil(t, IKEPolicyKeyLifetime, "IKEPolicyKeyLifetime", "vpn")
-	ifNil(t, IKEPolicyPresharedKey, "IKEPolicyPresharedKey", "vpn")
-	ifNil(t, IKEPolicyVersion, "IKEPolicyVersion", "vpn")
-}
+// 	AccountPreCheck(t)
+// 	ifNil(t, IKEPolicyName, "IKEPolicyName", "vpn")
+// 	ifNil(t, IKEPolicyDhGroup, "IKEPolicyDhGroup", "vpn")
+// 	ifNil(t, IKEPolicyEncryption, "IKEPolicyEncryption", "vpn")
+// 	ifNil(t, IKEPolicyKeyLifetime, "IKEPolicyKeyLifetime", "vpn")
+// 	ifNil(t, IKEPolicyPresharedKey, "IKEPolicyPresharedKey", "vpn")
+// 	ifNil(t, IKEPolicyVersion, "IKEPolicyVersion", "vpn")
+// }
 
-// IPSecPreCheck verifies that all VPN IPSec Policy variables are defined.
-func IPSecPreCheck(t *testing.T) {
+// // IPSecPreCheck verifies that all VPN IPSec Policy variables are defined.
+// func IPSecPreCheck(t *testing.T) {
 
-	// Skip if testing is disabled
-	if DisableTesting {
-		return
-	}
+// 	// Skip if testing is disabled
+// 	if DisableTesting {
+// 		return
+// 	}
 
-	AccountPreCheck(t)
-	ifNil(t, IPSecPolicyName, "IPSecPolicyName", "vpn")
-	ifNil(t, IPSecPolicyAuthentication, "IPSecPolicyAuthentication", "vpn")
-	ifNil(t, IPSecPolicyDhGroup, "IPSecPolicyDhGroup", "vpn")
-	ifNil(t, IPSecPolicyEncryption, "IPSecPolicyEncryption", "vpn")
-	ifNil(t, IPSecPolicyKeyLifetime, "IPSecPolicyKeyLifetime", "vpn")
-	ifNil(t, IPSecPolicyPfs, "IPSecPolicyPfs", "vpn")
-}
+// 	AccountPreCheck(t)
+// 	ifNil(t, IPSecPolicyName, "IPSecPolicyName", "vpn")
+// 	ifNil(t, IPSecPolicyAuthentication, "IPSecPolicyAuthentication", "vpn")
+// 	ifNil(t, IPSecPolicyDhGroup, "IPSecPolicyDhGroup", "vpn")
+// 	ifNil(t, IPSecPolicyEncryption, "IPSecPolicyEncryption", "vpn")
+// 	ifNil(t, IPSecPolicyKeyLifetime, "IPSecPolicyKeyLifetime", "vpn")
+// 	ifNil(t, IPSecPolicyPfs, "IPSecPolicyPfs", "vpn")
+// }
 
-// TestSession returns an *IBMPISession for testing.
-func TestSession(t *testing.T) *ps.IBMPISession {
+// TestSession returns an *IBMPPCSession for testing.
+func TestSession(t *testing.T) *ps.IBMPPCSession {
 
 	extractCrn()
 
@@ -348,7 +348,7 @@ func TestSession(t *testing.T) *ps.IBMPISession {
 	}
 
 	// create session options
-	sessionOptions := &ps.IBMPIOptions{
+	sessionOptions := &ps.IBMPPCOptions{
 		Debug:         debug,
 		UserAccount:   accountID,
 		Zone:          zone,
@@ -356,13 +356,13 @@ func TestSession(t *testing.T) *ps.IBMPISession {
 	}
 
 	// create session
-	session, err := ps.NewIBMPISession(sessionOptions)
+	session, err := ps.NewIBMPPCSession(sessionOptions)
 	require.Nil(t, err)
 	return session
 }
 
 // WaitForJobState waits for a job to be completed before returning.
-func WaitForJobState(t *testing.T, jobClient *client.IBMPIJobClient, jobId string) {
+func WaitForJobState(t *testing.T, jobClient *client.IBMPPCJobClient, jobId string) {
 	var status string
 	for status != "completed" && status != "failed" {
 		job, err := jobClient.Get(jobId)
@@ -381,13 +381,13 @@ func extractCrn() {
 	CloudInstanceID = crnSlice[7]
 	zone = crnSlice[5]
 	if crnSlice[2] == "staging" {
-		powerEndpoint = "power-iaas.test.cloud.ibm.com"
+		powerEndpoint = "ppc-aas.test.cloud.ibm.com"
 		apiURL = "https://iam.test.cloud.ibm.com"
 	} else {
-		powerEndpoint = "power-iaas.cloud.ibm.com"
+		powerEndpoint = "ppc-aas.cloud.ibm.com"
 		apiURL = "https://iam.cloud.ibm.com"
 	}
-	// set powerEndpoint for NewIBMPISession to use
+	// set powerEndpoint for NewIBMPPCSession to use
 	os.Setenv("IBMCLOUD_POWER_API_ENDPOINT", powerEndpoint)
 }
 

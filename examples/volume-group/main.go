@@ -5,9 +5,9 @@ import (
 	"log"
 	"time"
 
-	v "github.com/IBM-Cloud/power-go-client/clients/instance"
-	ps "github.com/IBM-Cloud/power-go-client/ibmpisession"
-	"github.com/IBM-Cloud/power-go-client/power/models"
+	v "github.com/IBM-Cloud/ppc-aas-go-sdk/clients/instance"
+	ps "github.com/IBM-Cloud/ppc-aas-go-sdk/ibmppcsession"
+	"github.com/IBM-Cloud/ppc-aas-go-sdk/ppc-aas/models"
 	"github.com/IBM/go-sdk-core/v5/core"
 )
 
@@ -17,7 +17,7 @@ func main() {
 	region := " < REGION > "
 	zone := " < ZONE > "
 	accountID := " < ACCOUNT ID > "
-	url := region + ".power-iaas.test.cloud.ibm.com"
+	url := region + ".ppc-aas.test.cloud.ibm.com"
 
 	// volume inputs
 	piID := " < POWER INSTANCE ID > "
@@ -35,18 +35,18 @@ func main() {
 	// 	URL: "https://iam.test.cloud.ibm.com",
 	// }
 	// Create the session
-	options := &ps.IBMPIOptions{
+	options := &ps.IBMPPCOptions{
 		Authenticator: authenticator,
 		UserAccount:   accountID,
 		Zone:          zone,
 		URL:           url,
 		Debug:         true,
 	}
-	session, err := ps.NewIBMPISession(options)
+	session, err := ps.NewIBMPPCSession(options)
 	if err != nil {
 		log.Fatal(err)
 	}
-	powerClient := v.NewIBMPIVolumeGroupClient(context.Background(), session, piID)
+	powerClient := v.NewIBMPPCVolumeGroupClient(context.Background(), session, piID)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -137,7 +137,7 @@ func main() {
 }
 
 // vgStatusCheck waits for volume-group status to available
-func vgStatusCheck(id string, powerClient *v.IBMPIVolumeGroupClient) {
+func vgStatusCheck(id string, powerClient *v.IBMPPCVolumeGroupClient) {
 	for start := time.Now(); time.Since(start) < time.Second*30; {
 		time.Sleep(10 * time.Second)
 		vg, err := powerClient.GetDetails(id)

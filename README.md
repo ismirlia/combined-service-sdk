@@ -1,12 +1,12 @@
-![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/IBM-Cloud/power-go-client)
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/IBM-Cloud/power-go-client)
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/IBM-Cloud/power-go-client/Go)
-![GitHub contributors](https://img.shields.io/github/contributors/IBM-Cloud/power-go-client?color=blueviolet)
-![GitHub](https://img.shields.io/github/license/IBM-Cloud/power-go-client)
+![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/IBM-Cloud/ppc-aas-go-sdk)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/IBM-Cloud/ppc-aas-go-sdk)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/IBM-Cloud/ppc-aas-go-sdk/Go)
+![GitHub contributors](https://img.shields.io/github/contributors/IBM-Cloud/ppc-aas-go-sdk?color=blueviolet)
+![GitHub](https://img.shields.io/github/license/IBM-Cloud/ppc-aas-go-sdk)
 
 # IBM Cloud SDK for Power Cloud
 
-The power-go-client project provides the Go SDK for IBM® Power Systems™ Virtual Server.
+The ppc-aas-go-sdk project provides the Go SDK for IBM® Power Systems™ Virtual Server.
 
 ## Prerequisites
 
@@ -24,7 +24,7 @@ Install the SDK using the following methods.
 
 Use this command to download and install the SDK to allow your Go application to use it:
 ```
-go get -u github.com/IBM-Cloud/power-go-client
+go get -u github.com/IBM-Cloud/ppc-aas-go-sdk
 ```
 
 ### Go modules
@@ -32,7 +32,7 @@ go get -u github.com/IBM-Cloud/power-go-client
 If your application is using Go modules, you can add a suitable import to your Go application, like this:
 ```go
 import (
-  "github.com/IBM-Cloud/power-go-client"
+  "github.com/IBM-Cloud/ppc-aas-go-sdk"
 )
 ```
 then run `go mod tidy` to download and install the new dependency and update your Go application's
@@ -44,7 +44,7 @@ If your application is using the `dep` dependency management tool, you can add a
 to your `Gopkg.toml` file. Here is an example:
 ```
 [[constraint]]
-  name = "github.com/IBM-Cloud/power-go-client"
+  name = "github.com/IBM-Cloud/ppc-aas-go-sdk"
   version = "1.1.0"
 
 ```
@@ -55,7 +55,7 @@ then run `dep ensure`.
 First you need to create a session and use it for creating the client.
 
 ```golang
-import "github.com/IBM-Cloud/power-go-client/ibmpisession"
+import "github.com/IBM-Cloud/ppc-aas-go-sdk/ibmpisession"
 
 func main(){
     o := &ibmpisession.IBMPIOptions{
@@ -75,14 +75,14 @@ Type `IBMPIOptions` required fields:
 Other optional fields:
 -	`Debug`: Enable/Disable http transport debugging log.
 - `Region`: Region of the Power Cloud Service Instance. This is used for generating the default service URL. *Deprecated*: The region and endpoint is auto generated based on `Zone`.
-- `URL`: Power Virtual Server host or URL endpoint. By default it uses `power-iaas.cloud.ibm.com`. In case of test environment you can set the value to `power-iaas.test.cloud.ibm.com`. You can also use env variable `IBMCLOUD_POWER_API_ENDPOINT`. Note that the region value is prepended to the host string if not present eg: `<region>.power-iaas.cloud.ibm.com`.
+- `URL`: Power Virtual Server host or URL endpoint. By default it uses `ppc-aas.cloud.ibm.com`. In case of test environment you can set the value to `ppc-aas.test.cloud.ibm.com`. You can also use env variable `IBMCLOUD_POWER_API_ENDPOINT`. Note that the region value is prepended to the host string if not present eg: `<region>.ppc-aas.cloud.ibm.com`.
 
 Also you can refer to the [examples](examples) directory for some resources that shows how to use the SDK.
 
 
 ## Issues
 
-If you encounter an issue with the project please [report here.](https://github.com/IBM-Cloud/power-go-client/issues).
+If you encounter an issue with the project please [report here.](https://github.com/IBM-Cloud/ppc-aas-go-sdk/issues).
 
 ## Development
 

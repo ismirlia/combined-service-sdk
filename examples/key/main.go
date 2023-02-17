@@ -4,9 +4,9 @@ import (
 	"context"
 	"log"
 
-	v "github.com/IBM-Cloud/power-go-client/clients/instance"
-	ps "github.com/IBM-Cloud/power-go-client/ibmpisession"
-	"github.com/IBM-Cloud/power-go-client/power/models"
+	v "github.com/IBM-Cloud/ppc-aas-go-sdk/clients/instance"
+	ps "github.com/IBM-Cloud/ppc-aas-go-sdk/ibmppcsession"
+	"github.com/IBM-Cloud/ppc-aas-go-sdk/ppc-aas/models"
 	"github.com/IBM/go-sdk-core/v5/core"
 )
 
@@ -17,7 +17,7 @@ func main() {
 	region := " < REGION > "
 	zone := " < ZONE > "
 	accountID := " < ACCOUNT ID > "
-	url := region + ".power-iaas.test.cloud.ibm.com"
+	url := region + ".ppc-aas.test.cloud.ibm.com"
 
 	// ssh inputs
 	name := " < NAME OF THE ssh > "
@@ -33,7 +33,7 @@ func main() {
 	// 	URL: "https://iam.test.cloud.ibm.com",
 	// }
 	// Create the session
-	options := &ps.IBMPIOptions{
+	options := &ps.IBMPPCOptions{
 		Authenticator: authenticator,
 		UserAccount:   accountID,
 		Zone:          zone,
@@ -41,11 +41,11 @@ func main() {
 		Debug:         true,
 	}
 
-	session, err := ps.NewIBMPISession(options)
+	session, err := ps.NewIBMPPCSession(options)
 	if err != nil {
 		log.Fatal(err)
 	}
-	powerClient := v.NewIBMPIKeyClient(context.Background(), session, piID)
+	powerClient := v.NewIBMPPCKeyClient(context.Background(), session, piID)
 	if err != nil {
 		log.Fatal(err)
 	}

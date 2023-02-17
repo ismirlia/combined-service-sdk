@@ -1,4 +1,4 @@
-module github.com/IBM-Cloud/power-go-client
+module github.com/IBM-Cloud/ppc-aas-go-sdk
 
 go 1.17
 

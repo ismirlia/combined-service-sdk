@@ -1,28 +1,31 @@
 #!/bin/bash
 
-# get swagger directory
-printf "Enter swagger file directory, i.e., ~/User/Projects/service-broker/swagger\n   "
-read swaggerdir
-if [[ "$swaggerdir" != *"swagger.yaml" ]]; then
-    if [[ "$swaggerdir" != *"/" ]]; then
-        swaggerdir+="/"
-    fi
-    swaggerdir+="swagger.yaml"
-fi
+# Run from top-level project directory.
+swaggerdir="../service-broker/swagger/swagger.yaml"
 
-# remove old power directory
-if [ -d "power" ]; then
+# get swagger directory
+# printf "Enter swagger file directory, i.e., ~/User/Projects/service-broker/swagger\n   "
+# read swaggerdir
+# if [[ "$swaggerdir" != *"swagger.yaml" ]]; then
+#     if [[ "$swaggerdir" != *"/" ]]; then
+#         swaggerdir+="/"
+#     fi
+#     swaggerdir+="swagger.yaml"
+# fi
+
+# remove old ppc-aas directory
+if [ -d "ppc-aas" ]; then
     printf "Removing old Power-Go-Client swagger files\n"
-    rm -rf power
+    rm -rf ppc-aas
 fi
-mkdir power
+mkdir ppc-aas
 
 # generate swagger files
 printf "Generating new Power-Go-Client swagger file\n"
-generatecmd="swagger generate client -f $swaggerdir -t power"
+generatecmd="swagger generate client -f $swaggerdir -t ppc-aas"
 eval $generatecmd
 
 # remove unused files
 printf "\nRemoving unused Power-Go-Client swagger files\n"
-rm power/models/user_access.go
-rm power/models/principal.go
+rm ppc-aas/models/user_access.go
+rm ppc-aas/models/principal.go
