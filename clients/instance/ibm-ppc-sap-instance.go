@@ -10,20 +10,20 @@ import (
 	"github.com/IBM-Cloud/ppc-aas-go-sdk/ppc-aas/models"
 )
 
-// IBMPPCSAPnstanceClient
-type IBMPPCSAPnstanceClient struct {
+// IBMPPCSAPInstanceClient
+type IBMPPCSAPInstanceClient struct {
 	IBMPPCClient
 }
 
-// NewIBMPPCSAPnstanceClient
-func NewIBMPPCSAPnstanceClient(ctx context.Context, sess *ibmppcsession.IBMPPCSession, cloudInstanceID string) *IBMPPCSAPnstanceClient {
-	return &IBMPPCSAPnstanceClient{
+// NewIBMPPCSAPInstanceClient
+func NewIBMPPCSAPInstanceClient(ctx context.Context, sess *ibmppcsession.IBMPPCSession, cloudInstanceID string) *IBMPPCSAPInstanceClient {
+	return &IBMPPCSAPInstanceClient{
 		*NewIBMPPCClient(ctx, sess, cloudInstanceID),
 	}
 }
 
 // Create a SAP Instance
-func (f *IBMPPCSAPnstanceClient) Create(body *models.SAPCreate) (*models.PVMInstanceList, error) {
+func (f *IBMPPCSAPInstanceClient) Create(body *models.SAPCreate) (*models.PVMInstanceList, error) {
 	params := p_cloud_s_a_p.NewPcloudSapPostParams().
 		WithContext(f.ctx).WithTimeout(helpers.PPCCreateTimeOut).
 		WithCloudInstanceID(f.cloudInstanceID).WithBody(body)
@@ -44,7 +44,7 @@ func (f *IBMPPCSAPnstanceClient) Create(body *models.SAPCreate) (*models.PVMInst
 }
 
 // Get a SAP Profile
-func (f *IBMPPCSAPnstanceClient) GetSAPProfile(id string) (*models.SAPProfile, error) {
+func (f *IBMPPCSAPInstanceClient) GetSAPProfile(id string) (*models.SAPProfile, error) {
 	params := p_cloud_s_a_p.NewPcloudSapGetParams().
 		WithContext(f.ctx).WithTimeout(helpers.PPCGetTimeOut).
 		WithCloudInstanceID(f.cloudInstanceID).WithSapProfileID(id)
@@ -59,7 +59,7 @@ func (f *IBMPPCSAPnstanceClient) GetSAPProfile(id string) (*models.SAPProfile, e
 }
 
 // Get All SAP Profiles
-func (f *IBMPPCSAPnstanceClient) GetAllSAPProfiles(cloudInstanceID string) (*models.SAPProfiles, error) {
+func (f *IBMPPCSAPInstanceClient) GetAllSAPProfiles(cloudInstanceID string) (*models.SAPProfiles, error) {
 	params := p_cloud_s_a_p.NewPcloudSapGetallParams().
 		WithContext(f.ctx).WithTimeout(helpers.PPCGetTimeOut).
 		WithCloudInstanceID(f.cloudInstanceID)
