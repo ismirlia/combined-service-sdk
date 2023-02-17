@@ -13,19 +13,19 @@ swaggerdir="../service-broker/swagger/swagger.yaml"
 #     swaggerdir+="swagger.yaml"
 # fi
 
-# remove old ppc-aas directory
+# Remove old ppc-aas directory
 if [ -d "ppc-aas" ]; then
     printf "Removing old Power-Go-Client swagger files\n"
     rm -rf ppc-aas
 fi
 mkdir ppc-aas
 
-# generate swagger files
+# Generate swagger files
 printf "Generating new Power-Go-Client swagger file\n"
 generatecmd="swagger generate client -f $swaggerdir -t ppc-aas"
 eval $generatecmd
 
-# remove unused files
+# Remove unused files
 printf "\nRemoving unused Power-Go-Client swagger files\n"
 rm ppc-aas/models/user_access.go
 rm ppc-aas/models/principal.go
