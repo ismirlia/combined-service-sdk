@@ -20,7 +20,6 @@ import (
 	"github.com/IBM-Cloud/ppc-aas-go-sdk/ppc-aas/client/internal_storage_regions"
 	"github.com/IBM-Cloud/ppc-aas-go-sdk/ppc-aas/client/internal_transit_gateway"
 	"github.com/IBM-Cloud/ppc-aas-go-sdk/ppc-aas/client/open_stacks"
-	"github.com/IBM-Cloud/ppc-aas-go-sdk/ppc-aas/client/p_cloud_cloud_connections"
 	"github.com/IBM-Cloud/ppc-aas-go-sdk/ppc-aas/client/p_cloud_events"
 	"github.com/IBM-Cloud/ppc-aas-go-sdk/ppc-aas/client/p_cloud_images"
 	"github.com/IBM-Cloud/ppc-aas-go-sdk/ppc-aas/client/p_cloud_instances"
@@ -96,7 +95,6 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *PowerIaasA
 	cli.InternalStorageRegions = internal_storage_regions.New(transport, formats)
 	cli.InternalTransitGateway = internal_transit_gateway.New(transport, formats)
 	cli.OpenStacks = open_stacks.New(transport, formats)
-	cli.PCloudCloudConnections = p_cloud_cloud_connections.New(transport, formats)
 	cli.PCloudEvents = p_cloud_events.New(transport, formats)
 	cli.PCloudImages = p_cloud_images.New(transport, formats)
 	cli.PCloudInstances = p_cloud_instances.New(transport, formats)
@@ -182,8 +180,6 @@ type PowerIaasAPI struct {
 
 	OpenStacks open_stacks.ClientService
 
-	PCloudCloudConnections p_cloud_cloud_connections.ClientService
-
 	PCloudEvents p_cloud_events.ClientService
 
 	PCloudImages p_cloud_images.ClientService
@@ -242,7 +238,6 @@ func (c *PowerIaasAPI) SetTransport(transport runtime.ClientTransport) {
 	c.InternalStorageRegions.SetTransport(transport)
 	c.InternalTransitGateway.SetTransport(transport)
 	c.OpenStacks.SetTransport(transport)
-	c.PCloudCloudConnections.SetTransport(transport)
 	c.PCloudEvents.SetTransport(transport)
 	c.PCloudImages.SetTransport(transport)
 	c.PCloudInstances.SetTransport(transport)
