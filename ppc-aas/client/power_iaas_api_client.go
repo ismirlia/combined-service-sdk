@@ -37,7 +37,6 @@ import (
 	"github.com/IBM-Cloud/ppc-aas-go-sdk/ppc-aas/client/p_cloud_tenants"
 	"github.com/IBM-Cloud/ppc-aas-go-sdk/ppc-aas/client/p_cloud_tenants_ssh_keys"
 	"github.com/IBM-Cloud/ppc-aas-go-sdk/ppc-aas/client/p_cloud_volume_groups"
-	"github.com/IBM-Cloud/ppc-aas-go-sdk/ppc-aas/client/p_cloud_volume_onboarding"
 	"github.com/IBM-Cloud/ppc-aas-go-sdk/ppc-aas/client/p_cloud_volumes"
 	"github.com/IBM-Cloud/ppc-aas-go-sdk/ppc-aas/client/service_bindings"
 	"github.com/IBM-Cloud/ppc-aas-go-sdk/ppc-aas/client/service_instances"
@@ -114,7 +113,6 @@ func New(transport runtime.ClientTransport, formats strfmt.Registry) *PowerIaasA
 	cli.PCloudTenants = p_cloud_tenants.New(transport, formats)
 	cli.PCloudTenantsSSHKeys = p_cloud_tenants_ssh_keys.New(transport, formats)
 	cli.PCloudVolumeGroups = p_cloud_volume_groups.New(transport, formats)
-	cli.PCloudVolumeOnboarding = p_cloud_volume_onboarding.New(transport, formats)
 	cli.PCloudVolumes = p_cloud_volumes.New(transport, formats)
 	cli.ServiceBindings = service_bindings.New(transport, formats)
 	cli.ServiceInstances = service_instances.New(transport, formats)
@@ -218,8 +216,6 @@ type PowerIaasAPI struct {
 
 	PCloudVolumeGroups p_cloud_volume_groups.ClientService
 
-	PCloudVolumeOnboarding p_cloud_volume_onboarding.ClientService
-
 	PCloudVolumes p_cloud_volumes.ClientService
 
 	ServiceBindings service_bindings.ClientService
@@ -263,7 +259,6 @@ func (c *PowerIaasAPI) SetTransport(transport runtime.ClientTransport) {
 	c.PCloudTenants.SetTransport(transport)
 	c.PCloudTenantsSSHKeys.SetTransport(transport)
 	c.PCloudVolumeGroups.SetTransport(transport)
-	c.PCloudVolumeOnboarding.SetTransport(transport)
 	c.PCloudVolumes.SetTransport(transport)
 	c.ServiceBindings.SetTransport(transport)
 	c.ServiceInstances.SetTransport(transport)
